@@ -7,6 +7,7 @@ import LoginPage from "./components/LoginPage";
 import SignUp from "./components/SignUp";
 import store from "./stores/store";
 import { createContext } from "react";
+import MyFinancialsPage from "./components/MyFinancialsPage";
 
 const GlobalStore = new createContext(store);
 
@@ -20,6 +21,7 @@ function App() {
           <Route path="/addexpenses" component={FinancialRecordPage} />
           <Route path="/login" component={LoginPage} />
           <Route path="/signup" component={SignUp} />
+          <Route path="/myfinancials" component={MyFinancialsPage} />
         </Router>
       </div>
     </GlobalStore.Provider>

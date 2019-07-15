@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import store from "../stores/store";
 
 class AddFinancial extends Component {
   state = {
@@ -39,6 +40,18 @@ class AddFinancial extends Component {
   };
 
   handleClick = () => {
+    const expenseToAdd = {
+      when: this.state.date,
+      category: this.state.selected,
+      amount: this.state.amount
+    };
+    if (
+      this.state.selected !== "" &&
+      this.state.date !== "" &&
+      this.state.amount !== 0
+    ) {
+      store.expenseStore.addExpense(expenseToAdd);
+    }
     document.getElementById("result").classList.add("showResult");
     setTimeout(() => {
       document.getElementById("result").classList.add("hideResult");

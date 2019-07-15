@@ -23,8 +23,8 @@ const LoginForm = ({ values, errors, touched, isSubmitting }) => {
 const LoginFormik = withFormik({
   mapPropsToValues({ email, password, remember }) {
     return {
-      email: "",
-      password: "",
+      email: localStorage.getItem("email") || "",
+      password: localStorage.getItem("pwd") || "",
       remember: false
     };
   },
@@ -35,6 +35,10 @@ const LoginFormik = withFormik({
     password: Yup.string().required()
   }),
   handleSubmit(values, { setSubmitting }) {
+    if (values.remember) {
+      localStorage.setItem("email", values.email);
+      localStorage.setItem("pwd", values.password);
+    }
     store.authStore.authenticate(values.email);
   }
 })(LoginForm);

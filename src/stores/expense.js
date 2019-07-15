@@ -2,7 +2,7 @@ import uuid from "uuid/v1";
 import { observable, action, computed, decorate } from "mobx";
 
 class ExpenseStore {
-  expenses = [{ id: 1, when: "some date", category: "fuel", amount: 20000 }];
+  expenses = [{ id: 1, when: "2019.07.15", category: "fuel", amount: 20000 }];
 
   get expenseCount() {
     return this.expenses.length;
@@ -15,6 +15,7 @@ class ExpenseStore {
 
   removeExpense(id) {
     this.expenses.filter(expense => expense.id !== id);
+    console.log(this.expenses);
   }
 }
 
