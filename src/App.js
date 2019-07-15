@@ -1,25 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Welcome from "./components/Welcome";
+import Header from "./components/Header";
+import FinancialRecordPage from "./components/FinancialRecordPage";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import LoginPage from "./components/LoginPage";
+import SignUp from "./components/SignUp";
+import store from "./stores/store";
+import { createContext } from "react";
+
+const GlobalStore = new createContext(store);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <GlobalStore.Provider>
+      <div className="App">
+        <Router>
+          <Header />
+          <Route path="/" exact component={Welcome} />
+          <Route path="/addexpenses" component={FinancialRecordPage} />
+          <Route path="/login" component={LoginPage} />
+          <Route path="/signup" component={SignUp} />
+        </Router>
+      </div>
+    </GlobalStore.Provider>
   );
 }
 

@@ -1,13 +1,312 @@
+@import '../node_modules/@fortawesome/fontawesome-free/css/all.min.css';
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+        "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+.bg {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url(./assets/bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.welcome-title {
+    color: whitesmoke;
+    font-size: 90px;
+    font-weight: 400;
+}
+
+.welcome-subtitle {
+    font-size: 50px;
+    font-weight: 300;
+}
+
+.welcome-join-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 80px;
+}
+
+.welcome-join-button button {
+    border: none;
+    height: 50px;
+    background-color: #17693a;
+    color: whitesmoke;
+    font-size: 18px;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.welcome-join-button button:hover {
+    transform: scale(1.2);
+    transition: 0.5s ease-out;
+}
+
+.navbar {
+    display: block;
+    position: absolute;
+    width: 100%;
+    color: whitesmoke;
+    margin-top: 20px;
+    font-size: 30px;
+    line-height: 30px;
+}
+
+.brand {
+    color: #27ae60;
+    margin-left: 16px;
+
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.navButton {
+    color: whitesmoke;
+    text-decoration: none;
+    margin-right: 16px;
+    font-size: 25px;
+    font-weight: 200;
+    cursor: pointer;
+}
+
+.navButton:link {
+    text-decoration: none;
+}
+
+.navButton:hover {
+    border-bottom: 5px solid #27ae60;
+    transition: 0.3s;
+}
+
+.login-bg {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url(./assets/bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-panel {
+    padding: 40px;
+    background-color: #27ae60;
+    width: 400px;
+    border-radius: 5px;
+}
+
+.login-panel form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-panel form input {
+    background-color: #dcf7e8;
+    border: none;
+    font-size: 20px;
+    margin-bottom: 16px;
+    border-radius: 5px;
+    padding: 5px;
+    padding-left: 10px;
+}
+
+.login-panel form input[type=submit] {
+    margin-top: 16px;
+    background-color: #17693a;
+    color: whitesmoke;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.login-panel form input[type=submit]:disabled {
+    cursor: not-allowed;
+}
+
+.login-title {
+    text-align: center;
+    font-size: 50px;
+    margin-bottom: 32px;
+    font-weight: 200
+}
+
+.form-error {
+    background-color: #f6bbb5;
+    color: #c72918;
+    padding-left: 8px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+}
+
+.error {
+    margin: 0;
+    padding: 8px 0;
+}
+
+.result {
+    position: absolute;
+    display: none;
+    background-color: #c3f2d7;
+    bottom: 0;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    color: #17693a;
+    text-align: center;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.showResult {
+    display: block;
+    animation: showUp 0.3s ease-in-out;
+}
+
+.hideResult {
+    animation: hideDown 0.3s ease-in-out forwards;
+}
+
+@keyframes showUp {
+    from {
+        display: none;
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+        display: block;
+    }
+}
+
+@keyframes hideDown {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+        display: none;
+    }
+}
+
+.financial-bg {
+    height: calc(100vh - 1px);
+    background-color: #292929;
+    padding-top: 1px;
+}
+
+.addFinancial h1 {
+    font-size: 50px;
+    font-weight: 100;
+    margin: 0;
+    margin-top: 80px;
+    text-align: center;
+    color: whitesmoke;
+}
+
+.addFinancial-instruction {
+    color: whitesmoke;
+    text-align: center;
+    font-size: 35px;
+    font-weight: 200;
+    margin: 60px 0px;
+}
+
+.financial-category-selected {
+    color: #27ae60;
+    transition: 0.5s ease-in;
+}
+
+.category-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.category-item i {
+    font-size: 50px;
+    margin-bottom: 8px;
+}
+
+.category-item:hover {
+    transform: rotate(360deg);
+    color: #27ae60;
+    transition: 0.5s ease-in-out;
+}
+
+.financial-category {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    color: whitesmoke;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.addFinancial-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.addFinancial-input-field {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 33%;
+}
+
+.addFinancial-input-label {
+    color: whitesmoke;
+    font-size: 20px;
+    font-weight: 200;
+    margin-bottom: 16px;
+}
+
+.addFinancial-input-field input {
+    width: 90%;
+    font-size: 20px;
+    height: 34px;
+    text-align: center;
+    border: none;
+}
+
+.addFinancial-input-field button {
+    width: 90%;
+    font-size: 20px;
+    height: 34px;
+    text-align: center;
+    border: none;
+    padding: 6px;
+    color: black;
+    background-color: white;
+}
+
+.addFinancial-all-done {
+    background-color: #27ae60 !important;
+    color: whitesmoke !important;
+    transition: 0.5s ease-in;
 }
