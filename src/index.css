@@ -64,12 +64,6 @@ body {
     line-height: 30px;
 }
 
-.brand {
-    color: #27ae60;
-    margin-left: 16px;
-
-}
-
 .header {
     display: flex;
     flex-direction: row;
@@ -93,6 +87,7 @@ body {
     border-bottom: 5px solid #27ae60;
     transition: 0.3s;
 }
+
 
 .login-bg {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url(./assets/bg.jpg);
@@ -215,7 +210,7 @@ body {
     padding-top: 1px;
 }
 
-.addFinancial h1 {
+.financial-title {
     font-size: 50px;
     font-weight: 100;
     margin: 0;
@@ -305,6 +300,10 @@ body {
     background-color: white;
 }
 
+.addFinancial-input-field button:disabled {
+    cursor: not-allowed;
+}
+
 .addFinancial-all-done {
     background-color: #27ae60 !important;
     color: whitesmoke !important;
@@ -340,34 +339,50 @@ body {
     margin-bottom: 8px;
 }
 
-.financial-list ul li i {
-    color: #e74c3c;
+#addfinancial-select {
+    width: 300px;
     font-size: 20px;
-    cursor: pointer;
+    border: none;
+    text-align-last: center;
+    padding: 5px;
 }
 
-.info {
-    width: 30%;
-    text-align: center;
-    margin: 0 auto;
+.grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    color: whitesmoke;
 }
 
-.financial-list-header {
-    display: flex;
-    flex-direction: row;
+.grid .financial-list-header {
     color: whitesmoke;
     font-size: 30px;
     font-weight: 200;
     padding-bottom: 10px;
     border-bottom: 1px solid #27ae60;
-}
-
-.financial-list-header div {
-    width: 30%;
     text-align: center;
-    margin: 0 auto;
 }
 
-.spacer {
-    flex: 1 1 auto;
+.grid span {
+    padding: 5px;
+    text-align: center;
+    color: whitesmoke;
+    font-size: 20px;
+    font-weight: 200;
+}
+
+.grid span i {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.financial-list-expense {
+    background-color: #dc3545;
+}
+
+.financial-list-income {
+    background-color: #28a745;
+}
+
+.active span {
+    border-bottom: 5px solid #27ae60;
 }

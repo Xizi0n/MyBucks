@@ -1,29 +1,49 @@
 import uuid from "uuid/v1";
 import { observable, action, computed, decorate } from "mobx";
 
-class ExpenseStore {
-  expenses = [{ id: 1, when: "2019.07.15", category: "fuel", amount: 20000 }];
+class FinancialRecordsStore {
+  financialRecords = [
+    {
+      id: 1,
+      when: "2019-07-15",
+      category: "Fuel",
+      amount: 20000,
+      currency: "HUF",
+      frequency: "Monthly",
+      type: "expense"
+    },
+    {
+      id: 2,
+      when: "2019-09-12",
+      category: "Salary",
+      amount: 220000,
+      currency: "HUF",
+      frequency: "Monthly",
+      type: "income"
+    }
+  ];
 
   get expenseCount() {
-    return this.expenses.length;
+    return this.financialRecords.length;
   }
 
-  addExpense(expense) {
+  addFinancialRecord(expense) {
     const updatedExpense = { ...expense, id: uuid() };
-    this.expenses.push(updatedExpense);
+    this.financialRecords.push(updatedExpense);
   }
 
-  removeExpense(id) {
-    this.expenses.filter(expense => expense.id !== id);
-    console.log(this.expenses);
+  removeFinancialRecord(id) {
+    this.financialRecords = this.financialRecords.filter(
+      frecord => frecord.id !== id
+    );
   }
 }
 
-decorate(ExpenseStore, {
-  expenses: observable,
+decorate(FinancialRecordsStore, {
+  financialRecords: observable,
   expenseCount: computed,
   addExpense: action,
   removeExpense: action
 });
 
-export default ExpenseStore;
+export default FinancialRecordsStore;

@@ -1,5 +1,6 @@
 import React from "react";
 import store from "../stores/store";
+import { observer } from "mobx-react";
 
 const MyFinancialList = () => {
   return (
@@ -8,32 +9,91 @@ const MyFinancialList = () => {
         <span>My financials</span>
       </h1>
       <div className="financial-list">
-        <div className="financial-list-header">
-          <div> Date </div>
-          <div> Category </div>
-          <div> Amount </div>
-        </div>
-        <ul>
-          {store.expenseStore.expenses.map(expense => {
+        <div className="grid">
+          <span className="financial-list-header">Date</span>
+          <span className="financial-list-header">Category</span>
+          <span className="financial-list-header">Amount</span>
+          <span className="financial-list-header">Currency</span>
+          <span className="financial-list-header">Frequency</span>
+          <span className="financial-list-header">Action</span>
+          {store.financialRecordsStore.financialRecords.map(fRecord => {
             return (
-              <li key={expense.id}>
-                <div className="info">{expense.when}</div>
-                <div className="info">{expense.category}</div>
-                <div className="info">{expense.amount} Ft</div>
-                <i
-                  className="fas fa-trash"
-                  onClick={() => {
-                    console.log(expense.id);
-                    store.expenseStore.removeExpense(expense.id);
-                  }}
-                />
-              </li>
+              <React.Fragment>
+                <span
+                  className={
+                    fRecord.type === "expense"
+                      ? "financial-list-expense"
+                      : "financial-list-income"
+                  }
+                >
+                  {fRecord.when}
+                </span>
+                <span
+                  className={
+                    fRecord.type === "expense"
+                      ? "financial-list-expense"
+                      : "financial-list-income"
+                  }
+                >
+                  {fRecord.category}
+                </span>
+                <span
+                  className={
+                    fRecord.type === "expense"
+                      ? "financial-list-expense"
+                      : "financial-list-income"
+                  }
+                >
+                  {fRecord.type === "expense" ? "-" : "+"}
+                  {fRecord.amount}
+                </span>
+                <span
+                  className={
+                    fRecord.type === "expense"
+                      ? "financial-list-expense"
+                      : "financial-list-income"
+                  }
+                >
+                  {fRecord.currency}
+                </span>
+                <span
+                  className={
+                    fRecord.type === "expense"
+                      ? "financial-list-expense"
+                      : "financial-list-income"
+                  }
+                >
+                  {fRecord.frequency}
+                </span>
+                <span
+                  className={
+                    fRecord.type === "expense"
+                      ? "financial-list-expense"
+                      : "financial-list-income"
+                  }
+                >
+                  <i
+                    className="fas fa-trash"
+                    onClick={() => {
+                      console.log(fRecord.id);
+                      const shouldDelete = window.confirm(
+                        "Do you really want to delete?"
+                      );
+                      if (shouldDelete) {
+                        store.financialRecordsStore.removeFinancialRecord(
+                          fRecord.id
+                        );
+                      }
+                    }}
+                  />
+                </span>
+              </React.Fragment>
             );
           })}
-        </ul>
+        </div>
       </div>
     </React.Fragment>
   );
 };
 
-export default MyFinancialList;
+export default observer(MyFinancialList);

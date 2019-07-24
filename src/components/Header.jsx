@@ -1,29 +1,75 @@
 import React from "react";
+
 import { observer } from "mobx-react";
-import { Link } from "react-router-dom";
+
+import { Link, NavLink } from "react-router-dom";
 import store from "../stores/store";
 
 const Header = () => {
   return (
     <nav className="navbar">
       <div className="header">
-        <div className="brand">MyBucks</div>
-        <div style={{ flex: "1 1 auto" }} />
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <div className="navButton">Home</div>
-        </Link>
-        {store.authStore.isAuthenticated && (
-          <Link to="/addexpenses" style={{ textDecoration: "none" }}>
-            <div className="navButton">Add expenses</div>
+        <div>
+          <Link
+            to="/"
+            exact
+            style={{
+              textDecoration: "none",
+              color: "#27ae60",
+              marginLeft: "16px"
+            }}
+          >
+            MyBucks
           </Link>
+        </div>
+        <div
+          style={{
+            flex: "1 1 auto"
+          }}
+        />
+        {store.authStore.isAuthenticated && (
+          <NavLink
+            to="/addexpenses"
+            style={{
+              textDecoration: "none"
+            }}
+          >
+            <div className="navButton">
+              <span>Add expenses</span>
+            </div>
+          </NavLink>
         )}
         {store.authStore.isAuthenticated && (
-          <Link to="/myfinancials" style={{ textDecoration: "none" }}>
-            <div className="navButton">My Financials</div>
-          </Link>
+          <NavLink
+            to="/addincome"
+            style={{
+              textDecoration: "none"
+            }}
+          >
+            <div className="navButton">
+              <span>Add income</span>
+            </div>
+          </NavLink>
+        )}
+        {store.authStore.isAuthenticated && (
+          <NavLink
+            to="/myfinancials"
+            style={{
+              textDecoration: "none"
+            }}
+          >
+            <div className="navButton">
+              <span>My Financials</span>
+            </div>
+          </NavLink>
         )}
         {store.authStore.isAuthenticated ? (
-          <Link to="/login" style={{ textDecoration: "none" }}>
+          <Link
+            to="/login"
+            style={{
+              textDecoration: "none"
+            }}
+          >
             <div
               className="navButton"
               onClick={() => {
@@ -37,12 +83,26 @@ const Header = () => {
           </Link>
         ) : (
           <React.Fragment>
-            <Link to="/login" style={{ textDecoration: "none" }}>
-              <div className="navButton">Log in</div>
-            </Link>
-            <Link to="/signup" style={{ textDecoration: "none" }}>
-              <div className="navButton">Sign up</div>
-            </Link>
+            <NavLink
+              to="/login"
+              style={{
+                textDecoration: "none"
+              }}
+            >
+              <div className="navButton">
+                <span>Log in</span>
+              </div>
+            </NavLink>
+            <NavLink
+              to="/signup"
+              style={{
+                textDecoration: "none"
+              }}
+            >
+              <div className="navButton">
+                <span>Sign up</span>
+              </div>
+            </NavLink>
           </React.Fragment>
         )}
       </div>

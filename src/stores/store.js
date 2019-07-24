@@ -1,11 +1,11 @@
-import ExpenseStore from "./expense";
+import FinancialRecordsStore from "./expense";
 import AuthStore from "./auth";
 
 class Store {
-  expenseStore;
+  financialRecordsStore;
   authStore;
   constructor() {
-    this.expenseStore = new ExpenseStore();
+    this.financialRecordsStore = new FinancialRecordsStore();
     this.authStore = new AuthStore();
   }
 }

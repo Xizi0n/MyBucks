@@ -8,6 +8,7 @@ import SignUp from "./components/SignUp";
 import store from "./stores/store";
 import { createContext } from "react";
 import MyFinancialsPage from "./components/MyFinancialsPage";
+import AddIncome from "./components/AddIncome";
 
 const GlobalStore = new createContext(store);
 
@@ -22,6 +23,7 @@ function App() {
           <Route path="/login" component={LoginPage} />
           <Route path="/signup" component={SignUp} />
           <Route path="/myfinancials" component={MyFinancialsPage} />
+          <Route path="/addincome" component={AddIncome} />
         </Router>
       </div>
     </GlobalStore.Provider>
