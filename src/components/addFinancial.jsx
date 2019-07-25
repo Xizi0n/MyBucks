@@ -1,9 +1,10 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import store from "../stores/store";
 
 class AddFinancial extends Component {
   state = {
-    categories: [
+    expenseCategories: [
       { key: "Food", icon: "fas fa-hamburger" },
       { key: "Bill", icon: "fas fa-money-check-alt" },
       { key: "Fuel", icon: "fas fa-gas-pump" },
@@ -11,12 +12,59 @@ class AddFinancial extends Component {
       { key: "Public transport", icon: "fas fa-bus-alt" },
       { key: "Clothing", icon: "fas fa-tshirt" }
     ],
+    incomeCategories: [
+      { key: "Salary", icon: "fas fa-credit-card" },
+      { key: "Gift", icon: "fas fa-gift" },
+      { key: "Donation", icon: "fas fa-donate" },
+      { key: "Investment", icon: "fas fa-money-check" },
+      { key: "Other", icon: "fas fa-wallet" }
+    ],
+    categories: [],
     selected: "",
     date: this.getCurrentDate(),
     amount: 0,
     frequency: "",
     currency: "",
+    type: this.props.match.params.type,
     disabled: true
+  };
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.match.params.type !== state.type) {
+      return {
+        type: props.match.params.type,
+        categories:
+          props.match.params.type === "expense"
+            ? state.expenseCategories
+            : state.incomeCategories,
+        selected: "",
+        amount: 0,
+        frequency: "",
+        currency: "",
+        disabled: true
+      };
+    }
+  }
+
+  componentDidMount() {
+    this.setState({
+      categories:
+        this.props.match.params.type === "expense"
+          ? this.state.expenseCategories
+          : this.state.incomeCategories
+    });
+  }
+
+  resetPage = () => {
+    this.setState({
+      selected: "",
+      date: this.getCurrentDate(),
+      amount: 0,
+      frequency: "",
+      currency: "",
+      type: this.props.match.params.type,
+      disabled: true
+    });
   };
 
   getCurrentDate() {
@@ -56,6 +104,7 @@ class AddFinancial extends Component {
         }
       }
     );
+    console.log(this.props);
   };
 
   handleClick = () => {
@@ -65,7 +114,7 @@ class AddFinancial extends Component {
       amount: this.state.amount,
       currency: this.state.currency,
       frequency: this.state.frequency,
-      type: "expense"
+      type: this.state.type
     };
     if (
       this.state.selected !== "" &&
@@ -74,6 +123,7 @@ class AddFinancial extends Component {
     ) {
       store.financialRecordsStore.addFinancialRecord(expenseToAdd);
     }
+    this.resetPage();
     document.getElementById("result").classList.add("showResult");
     setTimeout(() => {
       document.getElementById("result").classList.add("hideResult");
@@ -82,10 +132,12 @@ class AddFinancial extends Component {
 
   render() {
     return (
-      <div className="addFinancial">
+      <div className="financial-bg">
+        {!store.authStore.isAuthenticated && <Redirect to="/login" />}
         <h1 className="financial-title">
           <span style={{ borderBottom: "1px solid #27ae60" }}>
-            Add your expenses here
+            Add your {this.state.type === "expense" ? "expenses" : "incomes"}{" "}
+            here
           </span>
         </h1>
         <div

@@ -12,7 +12,7 @@ const Header = () => {
         <div>
           <Link
             to="/"
-            exact
+            exact="true"
             style={{
               textDecoration: "none",
               color: "#27ae60",
@@ -29,7 +29,7 @@ const Header = () => {
         />
         {store.authStore.isAuthenticated && (
           <NavLink
-            to="/addexpenses"
+            to="/addfinancials/expense"
             style={{
               textDecoration: "none"
             }}
@@ -41,7 +41,7 @@ const Header = () => {
         )}
         {store.authStore.isAuthenticated && (
           <NavLink
-            to="/addincome"
+            to="/addfinancials/income"
             style={{
               textDecoration: "none"
             }}

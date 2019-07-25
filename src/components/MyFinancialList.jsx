@@ -16,7 +16,7 @@ const MyFinancialList = () => {
           <span className="financial-list-header">Currency</span>
           <span className="financial-list-header">Frequency</span>
           <span className="financial-list-header">Action</span>
-          {store.financialRecordsStore.financialRecords.map(fRecord => {
+          {store.financialRecordsStore.sortBy.map(fRecord => {
             return (
               <React.Fragment>
                 <span

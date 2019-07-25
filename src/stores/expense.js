@@ -23,6 +23,18 @@ class FinancialRecordsStore {
     }
   ];
 
+  get sortBy() {
+    return this.financialRecords.sort((x, y) => {
+      if (new Date(x.when) < new Date(y.when)) {
+        return -1;
+      }
+      if (new Date(x.when) > new Date(y.when)) {
+        return 1;
+      }
+      return 0;
+    });
+  }
+
   get expenseCount() {
     return this.financialRecords.length;
   }
@@ -42,6 +54,7 @@ class FinancialRecordsStore {
 decorate(FinancialRecordsStore, {
   financialRecords: observable,
   expenseCount: computed,
+  sortBy: computed,
   addExpense: action,
   removeExpense: action
 });

@@ -14,7 +14,7 @@ const LoginForm = ({ values, errors, touched, isSubmitting }) => {
           <Field type="checkbox" name="remember" checked={values.remember} />
           Remember me
         </label>
-        <input type="submit" value="Log me in!" />
+        <input type="submit" value="Log me in!" disabled={isSubmitting} />
       </Form>
     </div>
   );

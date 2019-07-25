@@ -1,14 +1,13 @@
 import React from "react";
 import Welcome from "./components/Welcome";
 import Header from "./components/Header";
-import FinancialRecordPage from "./components/FinancialRecordPage";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import LoginPage from "./components/LoginPage";
 import SignUp from "./components/SignUp";
 import store from "./stores/store";
 import { createContext } from "react";
 import MyFinancialsPage from "./components/MyFinancialsPage";
-import AddIncome from "./components/AddIncome";
+import AddFinancial from "./components/addFinancial";
 
 const GlobalStore = new createContext(store);
 
@@ -19,11 +18,11 @@ function App() {
         <Router>
           <Header />
           <Route path="/" exact component={Welcome} />
-          <Route path="/addexpenses" component={FinancialRecordPage} />
           <Route path="/login" component={LoginPage} />
           <Route path="/signup" component={SignUp} />
           <Route path="/myfinancials" component={MyFinancialsPage} />
-          <Route path="/addincome" component={AddIncome} />
+          <Route path="/addfinancials/:type" component={AddFinancial} />
+          <Redirect from="/addfinancials" to="/addfinancials/expense" />
         </Router>
       </div>
     </GlobalStore.Provider>
